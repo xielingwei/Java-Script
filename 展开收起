@@ -1,0 +1,15 @@
+<a style="float: right" id="open_add" href="javascript:void(0)"><label>﹀展开</label></a>
+
+<script>
+    $(function () {
+        $("#open_add").bind("click", function () {
+            if ($("#open_add").html() == "<label>﹀展开</label>") {
+                $("#add_description").show();
+                $("#open_add").html("<label>︿收起</label>");
+            } else {
+                $("#add_description").hide();
+                $("#open_add").html("<label>﹀展开</label>");
+            }
+        })
+    })
+</script>

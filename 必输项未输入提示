@@ -1,0 +1,55 @@
+<%= form_for(@event, :url => {:id => "new_event", :action => "create_sale_apply"}, :builder => CustomFormBuilder) do |f| %>
+  <%= content_for :form_table do %>
+        <table class="form-table">
+          <tr>
+            <td class="label-col"><label>客户类型:</label></td>
+            <td class="data-col">
+              <div class="form-field-wrapped form-field-required">
+                <span class="form-field-required-flag"></span>
+                  <%= select_tag_alias :event_type,
+                                       nullable_options_for_select(get_customer_types, nil),
+                                       {},
+                                       {:id => "event_type",
+                                        :class=>"self-field",
+                                        :required => true,
+                                        :blank => "--- #{t(:actionview_instancetag_blank_option)} ---",
+                                        :onchange => "custom_data(this)"
+                                       } %>
+                <label style="display: none;" class="error self-error">请选择一个值</label>
+              </div>
+            </td>
+	  </tr>
+	</table>
+  <% end %>
+
+	...
+	<td class="page-block-button pull-right">
+            <%= link_submit "提交", {:id => "submit", :class => "btn btn-primary"} %>
+            <%= link_to t(:cancel), {:action => "index"}, {:class => "btn btn-default"} %>
+          </td>
+	...
+
+<% end %>
+
+<script type="text/javascript">
+    $("#submit").click(function (event) {
+        event.preventDefault();
+
+        //遍历拥有self-field  class的所有控件
+        var arr = new Array()
+        for (var i = 0; i < $(".self-field").length; i++) {
+            if ($(".self-field")[i].value == "") {
+                arr.push(i)
+            }
+        }
+        if (arr.length > 0) {
+            for (var j = 0; j < arr.length; j++) {
+                $(".self-error")[arr[j]].style.display = "";
+            }
+            return false;
+        } else {
+      	    $("#new_event").submit();
+            return false
+        }
+    })
+</script>

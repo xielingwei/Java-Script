@@ -1,0 +1,17 @@
+1.Validate if判断
+2.Update_attributes/attribute
+	同样需要进入model执行各项验证
+3.New实例时进入model
+Q:4.验证为何写在model层?
+5.Sftp
+6.递归	eg.asset_list_controller def loop_xxx
+
+
+
+Unicorn文档
+Http如何处理请求?
+gem查看,参照文档进行使用
+
+Sftp
+中间件
+Http权威指南	暂时可以不看
